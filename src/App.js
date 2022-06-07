@@ -49,21 +49,15 @@ console.log(viewMsg);
   useEffect(() => {
     fetch();
   }, []);
-
-  
-
   return (
     <div className="h-screen w-full flex items-center justify-center ">
       <div className="h-[500px] w-[500px] border-2 relative  ">
-
-        <div className="p-10 w-full h-full flex flex-col gap-3 overflow-scroll">
+        <div className="p-10 w-full h-full gap-3 overflow-scroll">
           {
-           
-              viewMsg?.msgArray.map((elem)=>
-            (  <p className="  border-2 w-[80px] rounded-3xl flex items-center justify-center h-[50px] float-left ">
+              viewMsg?.msgArray?.map((elem)=>
+            (  <span >
               {elem.message}
-              {/* {console.log(elem.message)} */}
-              </p>)
+              </span>)
             )
           }
          
