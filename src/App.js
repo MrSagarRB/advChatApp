@@ -19,9 +19,14 @@ import confetti from "canvas-confetti";
 function App() {
   const [msg, setMsg] = useState({});
   const [viewMsg, setViewMsg] = useState([]);
-  const [lastMsg, setLastMsg] = useState();
+  const [lastMsg, setLastMsg] = useState([]);
+  const [dMsg, setDmsg]=useState();
+
+  
 
   const msgStore = {};
+
+  const dummyData = "";
 
   const sendMsg = async () => {
     await updateDoc(
@@ -42,7 +47,7 @@ function App() {
       doc(db, "msgStore", "messages", "sandesh", "suchana"),
       (parameter) => setViewMsg(parameter.data())
     );
-    console.log(viewMsg);
+   
     // console.log(data.docs);
     // setViewMsg(data.docs.map((elem) => ({ ...elem.data(), id: elem.id })));
   };
@@ -50,16 +55,31 @@ function App() {
   const handleChange = (e) => {
     setMsg({ ...msg, message: e.target.value });
     sendMsg();
-
     setLastMsg(viewMsg?.msgArray.length);
+
+
+
+if(lastMsg){
+  setDmsg(viewMsg.msgArray[lastMsg]) 
+  // console.log(viewMsg.msgArray)
+}else{
+  console.log("false")
+}
+  
+    
+
+    
   };
 
-  console.log(viewMsg?.msgArray[lastMsg].message);
-
-  
   useEffect(() => {
     fetch();
   }, []);
+
+
+  // console.log(dMsg?.message);
+
+  // console.log(lastMsg);
+
   return (
     <div className="h-screen w-full flex flex-col items-center justify-center ">
       <div className="h-[500px] w-[500px] border-2 relative  ">
@@ -74,13 +94,11 @@ function App() {
            
           } */}
 
-          {/* <p>
+          <p>
              {
-            viewMsg?.msgArray[lastMsg].message
-            }</p> */}
+               dMsg?.message
+            }</p>
         </div>
-
-
 
         <div className="border-2  absolute bottom-0 w-full flex">
           {" "}
